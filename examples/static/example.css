@@ -1,0 +1,8 @@
+.square {
+    padding: 1rem;
+    color: red;
+    background-color: rgb(100, 100, 100);
+    width: 250px;
+    height: 300px;
+    padding-top: auto;
+}

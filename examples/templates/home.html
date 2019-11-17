@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    {% render_block "css" %}
+    {% renderblock "css" %}
+    {% endrenderblock %}
 </head>
 <body>
-    {% import "components/square.html" as square %}
+    {% from "components/square.html" import square %}
+
+    <h1>Hello World</h1>
 
     {{ square() }}
-    <h1>Hello World</h1>
-    {% render_block "js" %}
-</body>
 </html>
