@@ -7,7 +7,7 @@ setup(
     license='MIT',
     author='Denzell Ford',
     author_email='fdenzell@gmail.com',
-    description='Enhanced block syntax for jinja',
+    description='Flask Template blocks with extra functionality',
     long_description=__doc__,
     py_modules=['flask_sekazi'],
     zip_safe=False,
