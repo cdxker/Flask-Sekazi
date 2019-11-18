@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     {% renderblock "css" %}
-    {% endrenderblock %}
 </head>
 <body>
     {% from "components/square.html" import square %}
@@ -14,4 +13,26 @@
     <h1>Hello World</h1>
 
     {{ square() }}
+
+	{% addtoblock "js" %}
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js"></script>
+	{% endaddtoblock %}
+
+	{% addtoblock "js" %}
+	    <script type="text/javascript">
+		$('firstelement').set('class', 'active');
+	    </script>
+	{% endaddtoblock %}
+
+	{% addtoblock "js" %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js"></script>
+	{% endaddtoblock %}
+
+	{% addtoblock "js" %}
+	    <script type="text/javascript">
+		$('secondelement').set('class', 'active');
+	    </script>
+	{% endaddtoblock %}
+
+	{% renderblock "js" %}
 </html>

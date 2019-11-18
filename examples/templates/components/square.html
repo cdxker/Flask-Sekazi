@@ -1,10 +1,14 @@
 {% macro square() %}
 
     {% addtoblock "css" %}
+    	<link rel="stylesheet" href="/static/example.css">
     {% endaddtoblock %}
 
-    <div class="square">
-        Words Words
+    <div class="square"> 
+	<h1>This is a square block</h1>
+	<p>
+	Adipisicing reiciendis esse ex placeat quia aspernatur. Nesciunt et facere saepe reiciendis nostrum, totam quam mollitia Explicabo amet vero dolorum.
+	</p>
     </div>
 
 {% endmacro %}
