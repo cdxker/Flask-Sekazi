@@ -22,7 +22,6 @@ from flask_sekazi import Sekazi
 app = Flask(__name__)
 sekazi = Sekazi(app)
 ```
-or
 
 Alternativly you can initialize it using `init_app`
 ```
@@ -37,49 +36,46 @@ Sekazi uses `renderblock` and `addtoblock` to handle unique code snippets define
 Example template:
 ```html
 <html>
-<head>
-{% renderblock "css" %}
-</head>
-<body>
-Your content comes here.
-Maybe you want to throw in some css:
+    <head>
+        {% renderblock "css" %}
+    </head>
+    <body>
+        Your content comes here.
+        Maybe you want to throw in some css:
 
+        {% addtoblock "css" %}
+            <link href="/media/css/stylesheet.css" media="screen" rel="[stylesheet](stylesheet)" type="text/css" />
+        {% endaddtoblock %}
 
-{% addtoblock "css" %}
-    <link href="/media/css/stylesheet.css" media="screen" rel="[stylesheet](stylesheet)" type="text/css" />
-{% endaddtoblock %}
+        Some more content here.
 
+        {% addtoblock "js" %}
+            <script type="text/javascript">
+                alert("Hello flask");
+            </script>
+        {% endaddtoblock %}
 
-Some more content here.
-
-
-{% addtoblock "js" %}
-    <script type="text/javascript">
-        alert("Hello flask");
-    </script>
-{% endaddtoblock %}
-
-
-And even more content.
-{% renderblock "js" %}
-</body>
+        And even more content.
+        {% renderblock "js" %}
+    </body>
 </html>
 ```
-Above example will render roughly to 
+ 
+The above example will render roughly to 
 ```html
 <html>
-<head>
-<link href="/media/css/stylesheet.css" media="screen" rel="stylesheet" type="text/css" />
-</head>
-<body>
-Your content comes here.
-Maybe you want to throw in some css:
-Some more content here.
-And even more content.
-<script type="text/javascript">
-alert("Hello flask");
-</script>
-</body>
+    <head>
+        <link href="/media/css/stylesheet.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        Your content comes here.
+        Maybe you want to throw in some css:
+        Some more content here.
+        And even more content.
+        <script type="text/javascript">
+            alert("Hello flask");
+        </script>
+    </body>
 </html>
 ```
 
@@ -91,7 +87,6 @@ All data in sekizai is enforced to be unique within its block namespace. This is
 
 A simple example of this action will be this template
 ```html
-
 
 {% addtoblock "js" %}
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js"></script>
@@ -126,5 +121,5 @@ Which renders down to
 </script>
 ```
 
-An example of using this in a flask application is found under the `examples` folder
-
+## Examples
+Examples of using this extension are shown under the `examples` folder
