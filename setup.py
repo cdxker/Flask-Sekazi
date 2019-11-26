@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Sekazi',
-    version='0.0.1',
+    version='0.0.3',
     url='https://github.com/fastfists/Flask-Sekazi',
     license='MIT',
     author='Denzell Ford',

@@ -102,15 +102,28 @@ class RenderBlock(Extension):
 
     tags = set(['renderblock'])
 
-    def _render_tag(self, name: str, caller):
+    def _render_tag(self, name: str, reverse, caller):
         context = self.environment.sekazi_tags
-        return jinja2.Markup('\n'.join(reversed( context.get(name, []) ) ))
+        order = reversed if reverse else lambda x:x
+        return jinja2.Markup('\n'.join(order( context.get(name, []) ) ))
 
     def parse(self, parser):
         lineno = next(parser.stream).lineno
-        name = parser.parse_expression()
-        args = [name]
 
+        block_name = parser.parse_expression()
+        reverse = nodes.Const(None)
+
+        while parser.stream.current.type != 'block_end':
+            parser.stream.expect('comma')
+
+            if parser.stream.current.test('name') and parser.stream.look().test('assign'):
+                name = next(parser.stream).value
+                parser.stream.skip()
+                value = parser.parse_expression()
+                if name == 'reverse':
+                    reverse = value
+
+        args = [block_name, reverse]
         return nodes.CallBlock(self.call_method('_render_tag', args),
                                [], [], []).set_lineno(lineno)
 
